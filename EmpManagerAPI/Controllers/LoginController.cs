@@ -25,16 +25,17 @@ namespace EmpManagerAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("Create")]
-        public IActionResult CreateEmployee(Register emp)
+        public async Task<IActionResult> CreateEmployee(Register emp)
         {
-            if (dbContext.RegistrationData.Where(x => x.Email == emp.Email).FirstOrDefaultAsync() != null)
+            var existingEmployee = await dbContext.RegistrationData.FirstOrDefaultAsync(x => x.Email == emp.Email);
+            if (existingEmployee != null)
             {
                 return Ok("Already Exists");
             }
 
             emp.CreatedOn = DateTime.Now;
             dbContext.RegistrationData.Add(emp);
-            dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
             return Ok("Success");
         }
 

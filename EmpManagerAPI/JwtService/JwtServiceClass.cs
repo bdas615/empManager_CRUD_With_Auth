@@ -27,7 +27,7 @@ namespace EmpManagerAPI.JwtService
             var payload = new[]
             {
                 new Claim("id",id),
-                new Claim("firstname",name),
+                new Claim("name",name),
                 new Claim("email",email)
              };
 

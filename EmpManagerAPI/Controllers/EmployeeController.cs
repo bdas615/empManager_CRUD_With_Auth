@@ -17,7 +17,9 @@ namespace EmpManagerAPI.Controllers
         private readonly EmpDbContextClass dbContext;
         private readonly IEmployeeRepository employeeRepository;
 
-        public EmployeeController(EmpDbContextClass dbContext, IEmployeeRepository employeeRepository, IConfiguration configuration)
+        public EmployeeController(EmpDbContextClass dbContext, 
+                                  IEmployeeRepository employeeRepository, 
+                                  IConfiguration configuration)
         {
             this.dbContext = dbContext;
             this.employeeRepository = employeeRepository;

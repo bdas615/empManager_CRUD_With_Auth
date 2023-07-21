@@ -21,7 +21,9 @@ namespace EmpManagerAPI.Models.Repositories
 
         public async Task<EmployeeParameters> AddEmployee(EmployeeParameters empParams)
         {
-            var result = await context.AddAsync(empParams);
+            //empParams.CreatedOn = DateTime.Now;
+            empParams.CreatedOn = DateTime.UtcNow;
+            var result = await context.AddAsync(empParams);      
             await context.SaveChangesAsync();
             return result.Entity;
         }
